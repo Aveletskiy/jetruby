@@ -1,0 +1,1 @@
+$('.card').hover(function(){$('.card').toggleClass('applyflip');}.bind(this));
