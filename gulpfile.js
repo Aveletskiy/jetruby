@@ -23,7 +23,7 @@ var paths = {
 
 
 gulp.task('sass',function(){
-    gulp.src(paths.source+'/sass/**/*.sass')
+    gulp.src(paths.source+'/sass/**/*.scss')
         .pipe(plumber())
         .pipe(sass().on('error', sass.logError))
         .pipe(debug(
@@ -108,13 +108,13 @@ gulp.task('watch', function () {
 });
 
 gulp.task('moveSripts',function(){
-    gulp.src(paths.source+'/js/*.js',{base: './src/js'})
+    gulp.src(paths.source+'/**/script.js',{base: paths.source})
         .pipe(debug(
             {
                 title: 'js moved :'
             }
         ))
-        .pipe(gulp.dest(paths.destination+'/js'))
+        .pipe(gulp.dest(paths.destination))
 });
 
 gulp.task('default', ['jade','sass','concatCSS','moveSripts','watch']);
