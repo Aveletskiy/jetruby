@@ -69,8 +69,21 @@ body {
     width: 100%;
     height: 100%;
     display: block;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    transition: .4s ease-in-out;
+    -webkit-transition: 0.4s ease-in-out;
+    -moz-transition: 0.4s ease-in-out;
+    -o-transition: 0.4s ease-in-out;
+    -ms-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    -o-backface-visibility: visible;
+    -ms-backface-visibility: visible;
+    backface-visibility: visible;
     background: white; }
     .card .inside.picked, .card .inside.matched {
       transform: rotateY(180deg); }
@@ -79,6 +92,10 @@ body {
       animation-delay: .4s; }
   .card .front, .card .back {
     border: 1px solid black;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
     backface-visibility: hidden;
     position: absolute;
     top: 0;
@@ -101,9 +118,46 @@ body {
     .card .back {
       padding: 10px; } }
 
+.inside .front {
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: visible; }
+
+.picked .inside .back {
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: visible; }
+
+.picked .inside .front {
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: hidden; }
+
+.inside .back {
+  /* IE Hack. Halfway through the card flip, set visibility. Keep other browsers visible throughout the card flip.*/
+  animation: stayvisible 0.5s both;
+  -webkit-animation: stayvisible 0.5s both;
+  -moz-animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: hidden; }
+
 .modal-overlay {
   display: none;
-  background: rgba(244, 205, 180, 0.8);
+  background: #C53A18;
   position: fixed;
   top: 0;
   left: 0;
@@ -148,12 +202,3 @@ body {
     cursor: pointer; }
     .modal .restart:hover {
       background: linear-gradient(#222, black); }
-  .modal .message {
-    text-align: center; }
-    .modal .message a {
-      text-decoration: none;
-      color: #28afe6;
-      font-weight: bold; }
-      .modal .message a:hover {
-        color: #56c0eb;
-        border-bottom: 1px dotted #56c0eb; }
